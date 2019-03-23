@@ -3,12 +3,24 @@
 # Exemple: $PATH configuration will likely never be the same accross computers
 source ~/.personal.bashrc
 
+# Edit .bashrc
+function brc {
+	cd $BASH_CONFIG_HOME
+	vim .bashrc
+	bash setup.bash
+	cd -
+}
+
+# Edit .vimrc
+function vrc {
+	cd $VIM_CONFIG_HOME
+	vim .vimrc
+	bash setup.bash
+	cd -
+}
+
 # Reload .bashrc
 alias rl="source ~/.bashrc"
-# Edit .bashrc
-alias brc="vim ~/.bashrc"
-# Edit .vimrc
-alias vrc="vim ~/.vimrc"
 # Quick clear
 alias c="clear"
 
