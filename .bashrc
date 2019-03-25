@@ -27,6 +27,8 @@ alias cdvrc="cd $VIM_CONFIG_HOME"
 alias rl="source ~/.bashrc"
 # Quick clear
 alias c="clear"
+# Ls with color
+alias ls="ls --color=tty"
 
 ################################################################################
 # GIT ALIASES                                                                  #
