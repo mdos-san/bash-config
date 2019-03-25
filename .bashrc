@@ -10,6 +10,8 @@ function brc {
 	bash setup.bash
 	cd -
 }
+# Go to bashrc directory
+alias cdbrc="cd $BASH_CONFIG_HOME"
 
 # Edit .vimrc
 function vrc {
@@ -18,6 +20,8 @@ function vrc {
 	bash setup.bash
 	cd -
 }
+# Go to vimrc directory
+alias cdvrc="cd $VIM_CONFIG_HOME"
 
 # Reload .bashrc
 alias rl="source ~/.bashrc"
