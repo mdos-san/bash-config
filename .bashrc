@@ -45,5 +45,6 @@ alias gds="git diff --staged"
 alias gl="git log --decorate --oneline --graph --all"
 alias gp="git push origin"
 alias gpf="git push --force origin"
+alias gpm="git push origin master"
 alias gs="git status"
 
