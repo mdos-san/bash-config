@@ -60,6 +60,9 @@ alias grc="git rebase --continue"
 alias gri="git rebase -i "
 alias grk="git rebase -i --keep-empty "
 alias grr="git rebase -i --keep-empty --autosquash "
+function grro {
+	git rebase -i --keep-empty --autosquash origin/$1
+}
 alias grrm="git rebase -i --keep-empty --autosquash origin/master "
 alias gs="git status"
 function grm {
