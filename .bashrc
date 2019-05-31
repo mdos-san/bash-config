@@ -38,17 +38,29 @@ alias gaa="git add --all"
 alias gap="git add --patch"
 alias gb="git branch"
 alias gbg="git branch | grep "
-alias gc="git commit"
-alias gca="git commit --amend"
+alias gc="git commit "
+alias gca="git commit --amend --allow-empty --no-edit "
+alias gcam="git commit --amend --allow-empty "
+alias gce="git commit --allow-empty "
+alias gcf="git commit --fixup "
+alias gcm="git commit -m "
 alias gd="git diff"
 alias gdm="git diff master"
 alias gdn="git diff --name-only"
 alias gdns="git diff --name-status master | sort"
 alias gds="git diff --staged"
+alias gf="git fetch "
 alias gl="git log --decorate --oneline --graph"
+alias gla="git log --decorate --oneline --graph --all"
 alias gp="git push origin"
 alias gpf="git push --force origin"
 alias gpm="git push origin master"
+alias gra="git rebase -i --autosquash "
+alias grc="git rebase --continue"
+alias gri="git rebase -i "
+alias grk="git rebase -i --keep-empty "
+alias grr="git rebase -i --keep-empty --autosquash "
+alias grrm="git rebase -i --keep-empty --autosquash origin/master "
 alias gs="git status"
 function grm {
 	git reset HEAD
@@ -56,3 +68,8 @@ function grm {
 	git clean -df
 }
 
+
+################################################################################
+# MAVEN ALIASES                                                                #
+################################################################################
+alias mrl="mvn clean install -D skipTests"
