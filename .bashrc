@@ -37,7 +37,9 @@ alias ga="git add"
 alias gaa="git add --all"
 alias gap="git add --patch"
 alias gb="git branch"
-alias gbg="git branch | grep "
+function gbg {
+	git branch | grep $1 | sed 's/[* ]*//'
+}
 alias gc="git commit "
 alias gca="git commit --amend --allow-empty --no-edit "
 alias gcam="git commit --amend --allow-empty "
@@ -56,6 +58,10 @@ alias gp="git push origin"
 function gpa {
 	BRANCH_NAME=`git branch | grep "*" | cut -d ' ' -f 2`
 	git push origin $BRANCH_NAME
+}
+function gpfa {
+	BRANCH_NAME=`git branch | grep "*" | cut -d ' ' -f 2`
+	git push --force origin $BRANCH_NAME
 }
 alias gpf="git push --force origin"
 alias gpm="git push origin master"
