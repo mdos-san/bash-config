@@ -53,6 +53,10 @@ alias gf="git fetch "
 alias gl="git log --decorate --oneline --graph"
 alias gla="git log --decorate --oneline --graph --all"
 alias gp="git push origin"
+function gpa {
+	BRANCH_NAME=`git branch | grep "*" | cut -d ' ' -f 2`
+	git push origin $BRANCH_NAME
+}
 alias gpf="git push --force origin"
 alias gpm="git push origin master"
 alias gra="git rebase -i --autosquash "
