@@ -55,13 +55,14 @@ alias gf="git fetch "
 alias gl="git log --decorate --oneline --graph"
 alias gla="git log --decorate --oneline --graph --all"
 alias gp="git push origin"
+function gba {
+	git branch | grep "*" | cut -d ' ' -f 2
+}
 function gpa {
-	BRANCH_NAME=`git branch | grep "*" | cut -d ' ' -f 2`
-	git push origin $BRANCH_NAME
+	git push origin `gba`
 }
 function gpfa {
-	BRANCH_NAME=`git branch | grep "*" | cut -d ' ' -f 2`
-	git push --force origin $BRANCH_NAME
+	git push --force origin `gba`
 }
 alias gpf="git push --force origin"
 alias gpm="git push origin master"
@@ -80,6 +81,11 @@ function grm {
 	git checkout .
 	git clean -df
 }
+alias gmm="git merge origin/master"
+function gma {
+	git merge origin/`gba`
+}
+alias gfa="git fetch --all "
 
 
 ################################################################################
