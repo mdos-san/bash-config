@@ -87,6 +87,15 @@ function gma {
 }
 alias gfa="git fetch --all "
 
+function port {
+	netstat -anop | grep $1 | grep LISTEN | sed -e "s/\s\+/ /g" | cut -d ' ' -f 7 | cut -d '/' -f 1
+}
+
+
+function kport {
+	kill -9 `port $1`
+}
+
 
 ################################################################################
 # MAVEN ALIASES                                                                #
