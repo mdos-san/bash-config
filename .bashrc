@@ -30,6 +30,10 @@ alias c="clear"
 # Ls with color
 alias ls="ls --color=tty"
 
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
 ################################################################################
 # GIT ALIASES                                                                  #
 ################################################################################
@@ -101,3 +105,52 @@ function kport {
 # MAVEN ALIASES                                                                #
 ################################################################################
 alias mrl="mvn clean install -D skipTests"
+
+alias notes="vim ~/notes"
+alias todo="vim ~/todo.md"
+
+function diff-by-name {
+	git log master --oneline | cut -d ' ' -f 2- > /tmp/master
+	git log $1 --oneline | cut -d ' ' -f 2- > /tmp/branch
+	diff /tmp/branch /tmp/master | cut -d ' ' -f 2- | sort | uniq -u
+}
+
+function lint-java {
+	export BRANCH=$(git branch | grep "*" | cut -d ' ' -f 2)
+	export FIRST_COMMIT=$(git log origin/master.. --oneline | tail -n 1 | cut -d ' ' -f 1)
+
+  run.sh pmd -d . -R rulesets/java/quickstart.xml > /tmp/branch
+  git checkout $FIRST_COMMIT^
+  run.sh pmd -d . -R rulesets/java/quickstart.xml > /tmp/master
+	git checkout $BRANCH
+  cat /tmp/master | sed -e "s/:[0-9]*://g" > /tmp/master-line
+  cat /tmp/branch | sed -e "s/:[0-9]*://g" > /tmp/branch-line
+	diff /tmp/master-line /tmp/branch-line > /tmp/diff
+	cat /tmp/diff
+}
+
+function lint-java-import {
+	echo "### Files with useless imports: "
+	cat /tmp/diff | grep -e "^>.*imports.*" | sed -n "s/^.*\/\(.*\.java\).*/  - \1/p" | uniq
+}
+
+# Color for TTY
+if [ "$TERM" = "linux" ]; then
+    echo -en "\e]P0232323" #black
+    echo -en "\e]P82B2B2B" #darkgrey
+    echo -en "\e]P1D75F5F" #darkred
+    echo -en "\e]P9E33636" #red
+    echo -en "\e]P287AF5F" #darkgreen
+    echo -en "\e]PA98E34D" #green
+    echo -en "\e]P3D7AF87" #brown
+    echo -en "\e]PBFFD75F" #yellow
+    echo -en "\e]P48787AF" #darkblue
+    echo -en "\e]PC7373C9" #blue
+    echo -en "\e]P5BD53A5" #darkmagenta
+    echo -en "\e]PDD633B2" #magenta
+    echo -en "\e]P65FAFAF" #darkcyan
+    echo -en "\e]PE44C9C9" #cyan
+    echo -en "\e]P7E5E5E5" #lightgrey
+    echo -en "\e]PFFFFFFF" #white
+    clear #for background artifacting
+fi
